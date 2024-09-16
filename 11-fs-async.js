@@ -50,13 +50,15 @@ function readf(path) {
     //         throw new Error(`Error reading file: ${err.message}`);
     //     });
     return new Promise((resolve,reject) => {
-        const file =fs.readFile(path, 'utf-8')
-        if (file) {
-            return resolve(file)
-        }
-        else{
-            reject('there is an error reading file')
-        }
+        readFile(path, 'utf-8' , (err,data)=>{
+            if (err) {
+                reject(err)
+            }
+            else{
+                resolve(data)
+            }
+        })
+        
     })
 }
 
